@@ -11,7 +11,7 @@
   </select>
 <button type="submit" class="btn btn-primary">Sort</button>
 </form>
-<form method="get" action="/search">
+<form method="get" action="{{ url('search') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-2 col-form-label">Hotel Name Or City :</label>
@@ -22,7 +22,7 @@
 
 </form>
 <br>
-<form method="get" action="/search2">
+<form method="get" action="{{ url('search2') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-form-label">Price Range:</label>
@@ -36,7 +36,7 @@
        
 </form>
 <br>
-<form method="get" action="/search3">
+<form method="get" action="{{ url('search3') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-form-label">Date Range :</label>
@@ -61,13 +61,13 @@
     <h5 class="card-title">{{ $p['city'] }}</h5>
     <p class="card-text">{{ $p['price'] }}$ for 1 Night</p>
     <h3>Avilable At:</h3>
-						<ul>
-    				    @foreach ($p['availability'] as $v)
-					   <li> From  : {{ $v['from'] }}</li>
-					   <li> To : {{ $v['to'] }}</li>
-					   @endforeach
-						</ul>
+            <ul>
+                @foreach ($p['availability'] as $v)
+             <li> From  : {{ $v['from'] }}</li>
+             <li> To : {{ $v['to'] }}</li>
+             @endforeach
+            </ul>
   </div>
 </div>
-@endforeach		     	 
+@endforeach          
 @endsection
