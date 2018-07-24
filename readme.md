@@ -15,10 +15,12 @@
 	ex hotel: Concorde Hotel
 	ex city: cairo
 
-if you want to search in price range wirte it in From-To :
+if you want to search in price range wirte it in From-To.
+
 	ex from:80
 	ex to:100
 if you want to search in date range wirte it in From-To :
+
 	ex from:1-10-2020
 	ex to:15-10-2020
 
