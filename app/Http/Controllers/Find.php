@@ -9,15 +9,13 @@ class Find extends Controller
 {
   public function index()
     {
-    	$json = json_decode(file_get_contents('https://api.myjson.com/bins/pq0f6'),true);
-		  $data = collect($json['hotels']);
-	    return view('show' , compact('data'));
+      $data = collect(getdata()['hotels']);
+      return view('show' , compact('data'));
     }
  public function sorting(Request $request)
     {
-      $json = json_decode(file_get_contents('https://api.myjson.com/bins/pq0f6'),true);
       $prasort = request('prasort');
-      $data = collect($json['hotels'])->sortBy($prasort);
+      $data = collect(getdata()['hotels'])->sortBy($prasort);
       return view('show' , compact('data'));
     }
   public function searchJson( $obj, $value )
@@ -34,18 +32,19 @@ class Find extends Controller
         }
     }
     return null;
-	}
+  }
 
   public function search(Request $request) 
     {
-    	$json = json_decode(file_get_contents('https://api.myjson.com/bins/pq0f6'),true);
-		$data = collect($json['hotels']);
-		$search = request('search');	
-  		$results = self::searchJson( $data , $search);
-  		if ($results != '') {
-			return view('search') -> with (compact('results','search'));
-  		}
-  		echo "<div class='alert alert-danger'>
+    $data = collect(getdata()['hotels']);
+    
+    $search = strtolower(request('search'));  
+
+      $results = self::searchJson( $data , $search);
+      if ($results != '') {
+      return view('search') -> with (compact('results','search'));
+      }
+      echo "<div class='alert alert-danger'>
                     Try Again <br>
                     </div>";
    }
@@ -62,7 +61,7 @@ class Find extends Controller
             $availableTo = DateTime::createFromFormat($format, $range['to']);
           //  dd($availableFrom);
             if ($from <= $availableFrom && $to >= $availableTo) {
-            	$results[$hotelKey] = $hotelProperties;
+              $results[$hotelKey] = $hotelProperties;
             }
         }
 
@@ -73,31 +72,28 @@ class Find extends Controller
 
   public function pricesearch(Request $request) 
     {
-    	$json = json_decode(file_get_contents('https://api.myjson.com/bins/pq0f6'),true);
-		$from = request('from');
-		$to = request('to');
-	
-		$data = collect($json['hotels'])
-		->where('price', '>=', $from)
-		->where('price', '<=', $to)->all();
-		if ($data != '') {
-		return view('search2')->with(compact('data','from','to'));
-		}
+    $from = request('from');
+    $to = request('to');
+    $data = collect(getdata()['hotels'])
+    ->where('price', '>=', $from)
+    ->where('price', '<=', $to)->all();
+    if ($data != '') {
+    return view('search2')->with(compact('data','from','to'));
+    }
 
    }
   public function datesearch(Request $request)
    {
-   		$json = json_decode(file_get_contents('https://api.myjson.com/bins/pq0f6'),true);
-   		$format = 'd-m-Y';
-   		$date1 = request('datefrom');
-   		$date2 = request('dateto');
-		$datefrom = DateTime::createFromFormat($format,$date1);
-		$dateto = DateTime::createFromFormat($format, $date2);
-		$data2 = collect($json['hotels'])->all();
-		$daterange = self::search3($data2,$datefrom,$dateto);
-	if ($daterange != '') {
-		return view('search3')->with(compact('daterange' ,'date1','date2'));
-	}
+      $format = 'd-m-Y';
+      $date1 = request('datefrom');
+      $date2 = request('dateto');
+    $datefrom = DateTime::createFromFormat($format,$date1);
+    $dateto = DateTime::createFromFormat($format, $date2);
+    $data2 = collect(getdata()['hotels'])->all();
+    $daterange = self::search3($data2,$datefrom,$dateto);
+  if ($daterange != '') {
+    return view('search3')->with(compact('daterange' ,'date1','date2'));
+  }
    }
 
 }
