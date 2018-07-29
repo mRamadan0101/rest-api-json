@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use DateTime;
 class Find extends Controller
 {
+  
   public function index()
     {
+
       $data = collect(getdata()['hotels']);
       return view('show' , compact('data'));
     }
@@ -22,7 +24,9 @@ class Find extends Controller
      {
     foreach( $obj as $key => $item ) {
         if( !is_nan( intval( $key ) ) && is_array( $item ) ){
-            if( in_array( $value, $item ) ) return $item;
+
+          if( in_array( $value, $item ) ) return $item;
+
         } else {
             foreach( $item as $child ) {
                 if(isset($child) && $child == $value) {
@@ -30,6 +34,7 @@ class Find extends Controller
                 }
             }
         }
+
     }
     return null;
   }
@@ -37,10 +42,10 @@ class Find extends Controller
   public function search(Request $request) 
     {
     $data = collect(getdata()['hotels']);
-    
+    $fdata = strtolower($data);
+    $sdata = json_decode($fdata,true);
     $search = strtolower(request('search'));  
-
-      $results = self::searchJson( $data , $search);
+      $results = self::searchJson( $sdata , $search);
       if ($results != '') {
       return view('search') -> with (compact('results','search'));
       }
