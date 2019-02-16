@@ -14,6 +14,6 @@
 
 Route::get('/', 'Find@index');
 Route::post('/', 'Find@sorting');
-Route::get('/search','Find@search');
-Route::get('/search2','Find@pricesearch');
-Route::get('/search3','Find@datesearch');
+Route::get('/search','Find@search')->name('search');
+Route::get('/search2','Find@pricesearch')->name('search2');
+Route::get('/search3','Find@datesearch')->name('search3');
