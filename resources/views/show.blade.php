@@ -3,7 +3,7 @@
 <div>
         <h1>Find Your Hotel</h1>
 </div>
-<form method="post" action="/">
+<form method="post" action="{{ route('sort') }}">
   {{ csrf_field() }}
   <select name="prasort">
     <option>name</option>
