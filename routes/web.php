@@ -13,7 +13,7 @@
 
 
 Route::get('/', 'Find@index');
-Route::post('/', 'Find@sorting')->name('sort');
+Route::post('/sort', 'Find@sorting')->name('sort');
 Route::get('/search','Find@search')->name('search');
 Route::get('/search2','Find@pricesearch')->name('search2');
 Route::get('/search3','Find@datesearch')->name('search3');
