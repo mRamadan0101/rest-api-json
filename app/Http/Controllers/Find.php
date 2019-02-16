@@ -18,6 +18,7 @@ class Find extends Controller
     {
       $prasort = request('prasort');
       $data = collect(getdata()['hotels'])->sortBy($prasort);
+   dd($data);
       return view('show' , compact('data'));
     }
   public function searchJson( $obj, $value )
