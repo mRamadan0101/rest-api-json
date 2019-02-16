@@ -11,7 +11,7 @@
   </select>
 <button type="submit" class="btn btn-primary">Sort</button>
 </form>
-<form method="get" action="{{ url('search') }}">
+<form method="get" action="{{ route('search') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-2 col-form-label">Hotel Name Or City :</label>
@@ -22,7 +22,7 @@
 
 </form>
 <br>
-<form method="get" action="{{ url('search2') }}">
+<form method="get" action="{{ route('search2') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-form-label">Price Range:</label>
@@ -36,7 +36,7 @@
        
 </form>
 <br>
-<form method="get" action="{{ url('search3') }}">
+<form method="get" action="{{ route('search3') }}">
       <div class="well">
           <div class="input-group">
              <label for="search" class="col-form-label">Date Range :</label>
