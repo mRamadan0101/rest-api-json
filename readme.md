@@ -11,6 +11,9 @@
 	composer install
 then
 
+	php artisan key:generate
+then	
+	
 	php artisan serve
 
 -you can sort hotels by Name or Price .
