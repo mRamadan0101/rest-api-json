@@ -4,7 +4,12 @@
 
 -its based on JSON link not database.
 
--Download files and open command line then write : 
+-Create helper file for JSON link
+
+-clone files and open command line then write : 
+	
+	composer install
+then
 
 	php artisan serve
 
