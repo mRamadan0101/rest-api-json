@@ -7,9 +7,6 @@
 -Create helper file for JSON link
 
 -clone files and open command line then write : 
-	
-	composer install
-then
 
 	php artisan key:generate
 then	
